@@ -1,10 +1,4 @@
-<head>
-  <title>Mr.Suit</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-</head>
-<body>
+<template name="main">
   <div class="ui inverted left inline vertical sidebar menu">
     <a class="item">
       <i class="home icon"></i>
@@ -24,18 +18,78 @@
     </a>
   </div>
   <div class="pusher">
-   <nav class="ui menu"> 
-      <h2 class="ui inverted black block header"><a href="">Mr.Suit</a></h2>
-    </nav>
-
+    <div class="ui inverted menu">
+      <a class="active item " id="sidebar">
+        <i class="icon list"></i> Mr.Suit
+      </a>
+      <a class="item">
+        <i class="mail icon"></i> Messages
+      </a>
+      <a class="item" id="upload">
+        <i class="upload icon"></i> upload
+      </a>
+      <div class="right menu">
+        <div class="item">
+          <div class="ui icon input">
+            <input type="text" placeholder="Search...">
+            <i class="search link icon"></i>
+          </div>
+        </div>
+        <a class="ui item" id="sign_out">
+          <i class="sign out icon"></i>
+        </a>
+      </div>
+    </div>
     <div class="ui main container">
       {{> postsList}}
     </div>
   </div>
-  <script>
-    $('h2.ui.header a').click(function(event) {
-      event.preventDefault();
-      $('.sidebar').sidebar('toggle');
-    })
-  </script>
-</body>
+  <div class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">
+    Upload Your Design:
+    </div>
+    <div class="content">
+      <h3 id='title'>Title:
+        <div class="ui mini icon input img_t">
+          <input type='text' name='img_title'>
+        </div>
+      </h3>
+      <div class="ui icon input img_input">
+        <input type="file" id="file">
+      </div>
+      <div class="left aligned stackable divided grid segment">
+        <h4>Tag:　
+          <div class="ui test checkbox">
+            <input type="checkbox">
+            <label>man</label>
+          </div>
+          <div class="ui test checkbox">
+            <input type="checkbox">
+            <label>woman</label>
+          </div>
+          <div class="ui test checkbox">
+            <input type="checkbox">
+            <label>youth</label>
+          </div>
+          <div class="ui test checkbox">
+            <input type="checkbox">
+            <label>elder</label>
+          </div>
+          <div class="ui test checkbox">
+            <input type="checkbox">
+            <label>single</label>
+          </div>
+          <div class="ui test checkbox">
+            <input type="checkbox">
+            <label>couple</label>
+          </div>
+        </h4>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui button">Cancel</div>
+      <div class="ui button uploadBt">OK</div>
+    </div>
+  </div>
+</template>
