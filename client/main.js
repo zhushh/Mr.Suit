@@ -13,7 +13,6 @@ Template["main"].onRendered(function() {
     $('.menu .item').tab();
     $(".uploadBt").off();
     $(document).on('click', '.uploadBt', function() {
-        alert("xxxx");
         var file = $('#file').get(0).files[0];
         var title = $("input[name='img_title']").val();
         var tmps = $('.checked');
