@@ -30,7 +30,7 @@ Template["register"].events({
             "profile.gender": gender
         }, function(err) {
             if (err) {
-                alert("Username has been occupied");
+                alert("error occured");
             }
         })
     },
