@@ -22,20 +22,17 @@ Template["main"].onRendered(function() {
             tags.push(tmp);
         }
         var tagStr = tags.join(",");
-        var fileObj = Images.insert(file, function(err, fileObj) {
-            if (err) {
-                    alert("storage error");
-                    return;
-            }
-        });
+        var fileObj = Images.insert(file);
         Meteor.users.update(
             {_id: Meteor.userId()},
             {
                 $push:{
                     "profile.design": {
                         "title": title,
-                        "image": fileObj,
-                        "tags": tagStr
+                        "image": fileObj._id,
+                        "tags": tagStr,
+                        "creator": Meteor.user().username,
+                        "date": new Date()
                     }
                 }
             }
