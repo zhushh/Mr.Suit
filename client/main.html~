@@ -13,8 +13,8 @@
       <i class="heart icon"></i>
       Like
     </a>
-    <a class="item" id="upload">
-      <i class="upload icon"></i>
+    <a class="item">
+      <i class="upload icon" id="upload"></i>
       MyUpload
     </a>
   </div>
