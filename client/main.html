@@ -1,22 +1,24 @@
 <template name="main">
+  <!--sidebar-->
   <div class="ui inverted left inline vertical sidebar menu">
     <a class="item">
       <i class="home icon"></i>
       Home
     </a>
     <a class="item">
-      <i class="block layout icon"></i>
-      Topics
+      <i class="mail icon"></i>
+      Message
     </a>
     <a class="item">
-      <i class="smile icon"></i>
-      Friends
+      <i class="heart icon"></i>
+      Like
     </a>
     <a class="item">
-      <i class="calendar icon"></i>
-      History
+      <i class="upload icon"></i>
+      MyUpload
     </a>
   </div>
+  <!--nav bar-->
   <div class="pusher">
     <div class="ui inverted menu">
       <a class="active item " id="sidebar">
@@ -24,9 +26,6 @@
       </a>
       <a class="item">
         <i class="mail icon"></i> Messages
-      </a>
-      <a class="item" id="upload">
-        <i class="upload icon"></i> upload
       </a>
       <div class="right menu">
         <div class="item">
@@ -40,10 +39,12 @@
         </a>
       </div>
     </div>
+    <!--card-->
     <div class="ui main container">
       {{> postsList}}
     </div>
   </div>
+  <!--upload-->
   <div class="ui modal">
     <i class="close icon"></i>
     <div class="header">
