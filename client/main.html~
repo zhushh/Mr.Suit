@@ -1,25 +1,20 @@
 <template name="main">
   <!--sidebar-->
   <div class="ui inverted left inline vertical sidebar menu">
-    <a class="item" href='/'>
+    <a class="item">
       <i class="home icon"></i>
       Home
     </a>
-    <a class="item"  href="/send_messages">
+    <a class="item">
       <i class="mail icon"></i>
-      
-      Sent Messages
-    </a>
-    <a class="item" href = "/received_messages">
-      <i class="mail icon"></i>
-      Received Messages
+      Message
     </a>
     <a class="item">
       <i class="heart icon"></i>
       Like
     </a>
-    <a class="item" id="upload">
-      <i class="upload icon"></i>
+    <a class="item">
+      <i class="upload icon" id="upload"></i>
       MyUpload
     </a>
   </div>
@@ -29,9 +24,8 @@
       <a class="active item " id="sidebar">
         <i class="icon list"></i> Mr.Suit
       </a>
-      <a class="item" href="/send_message" id = "message">
-        <i class="mail icon"></i> 
-        Messages
+      <a class="item">
+        <i class="mail icon"></i> Messages
       </a>
       <div class="right menu">
         <div class="item">
@@ -47,7 +41,7 @@
     </div>
     <!--card-->
     <div class="ui main container">
-      {{> yield}}
+      {{> postsList}}
     </div>
   </div>
   <!--upload-->

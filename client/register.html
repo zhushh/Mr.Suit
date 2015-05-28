@@ -1,0 +1,73 @@
+<template name="register">
+  <div class='register_container'>
+    <h1 class='register_title'>Mr.Suit</h1>
+    <div class="ui top attached tabular menu fluid two item">
+        <a class="active item" data-tab="login">Login</a>
+        <a class="item" data-tab="signup">Sign Up</a>
+    </div>
+    <div class="ui bottom attached active tab segment" data-tab="login">
+      <div class="column login_form">
+        <div class="ui form segment">
+          <div class="field">
+            <label>Username</label>
+            <div class="ui left icon input">
+              <input type="text" placeholder="Username" name="loginName">
+              <i class="user icon"></i>
+            </div>
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <div class="ui left icon input">
+              <input type="password" name="loginPassword">
+              <i class="lock icon"></i>
+            </div>
+          </div>
+          <div class="ui blue submit button login">
+            Login
+            <i class='sign in icon'></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="signup">
+      <div class="column signup_form">
+        <div class="ui form segment">
+          <div class="field">
+            <label>Username</label>
+            <div class="ui left icon input">
+              <input type="text" placeholder="Username" name='username'>
+              <i class="user icon"></i>
+            </div>
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <div class="ui left icon input">
+              <input type="password" name='password'>
+              <i class="lock icon"></i>
+            </div>
+          </div>
+          <div class="field">
+            <label>E-mail</label>
+            <div class="ui left icon input">
+              <input type="text" name='email'>
+              <i class="mail outline icon"></i>
+            </div>
+          </div>
+          <div class="field">
+            <label>Gender</label>
+            <select class="ui dropdown left icon">
+              <option value="">Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <i class='heterosexual icon'></i>
+            </select>
+          </div>
+          <div class="green ui labeled icon submit button signup">
+            <i class="signup icon"></i>
+            Sign Up
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
