@@ -35,7 +35,7 @@ Template["register"].events({
         })
     },
     'click .login': function() {
-        var username = $("input[name='loginUser']").val();
+        var username = $("input[name='loginName']").val();
         var password = $("input[name='loginPassword']").val();
         if (username == "" || password == "") {
             alert("Username or password is wrong");

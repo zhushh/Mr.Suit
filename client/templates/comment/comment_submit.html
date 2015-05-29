@@ -1,0 +1,24 @@
+<!--
+<template name="commitSubmit">
+    <form class="ui reply form">
+      	<div class="field">
+       		<textarea name="commit_body"></textarea>
+      	</div>
+      	<div class="ui blue labeled submit icon button" id="reply-commit">
+       		<i class="icon edit"></i> 添加回复
+      	</div>
+    </form>
+</template>
+-->
+<template name="commentSubmit">
+  <form name="comment" class="comment-form form">
+    <div class="form-group {{errorClass 'body'}}">
+        <div class="controls">
+            <label for="body">Comment on this post</label>
+            <textarea name="body" id="body" class="form-control" rows="3"></textarea>
+            <span class="help-block">{{errorMessage 'body'}}</span>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Comment</button>
+  </form>
+</template>
