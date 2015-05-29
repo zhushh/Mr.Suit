@@ -40,7 +40,19 @@ Template["main"].onRendered(function() {
     });
 });
 
+// control the show of the main page
+Template["main"].onCreated(function() {
+    Session.set('main_page_show', true);    // for dynamic change main page
+    Session.set('currentCard', {}); // for convernient to get card information
+});
+
 Template["main"].helpers({
+    show_page_list: function() {
+        return Session.get('main_page_show');
+    },
+    show_post_page: function() {
+        return !Session.get('main_page_show');
+    }
 });
 
 Template["main"].events({

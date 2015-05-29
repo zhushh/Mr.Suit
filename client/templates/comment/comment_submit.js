@@ -1,28 +1,3 @@
-// Template.commentSubmit.events({
-//   'click #reply-commit': function(e, template) {
-//     e.preventDefault();
-// 
-//     var $body = $(e.target).find('[name=commit_body]');
-//     var comment = {
-//       content: $body.val(),
-//       cardID: template.data._id
-//     };
-// 
-//     var errors = {};
-//     if (! comment.body) {
-//       errors.body = "Please write some content";
-//       return Session.set('commentSubmitErrors', errors);
-//     }
-// 
-//     Meteor.call('commentInsert', comment, function(error, commentId) {
-//       if (error){
-//         throwError(error.reason);
-//       } else {
-//         $body.val('');
-//       }
-//     });
-//   }
-// });
 Template.commentSubmit.onCreated(function() {
   Session.set('commentSubmitErrors', {});
 });
@@ -43,7 +18,7 @@ Template.commentSubmit.events({
     var $body = $(e.target).find('[name=body]');
     var comment = {
       content: $body.val(),
-      image: template.data._id
+      image: Session.get('currentCard').image // template.data._id
     };
 
     var errors = {};

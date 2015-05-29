@@ -40,9 +40,16 @@
       </div>
     </div>
     <!--card-->
-    <div class="ui main container">
-      {{> postsList}}
-    </div>
+    {{#if show_page_list}}
+      <div class="ui main container">
+        {{> postsList}}
+      </div>
+    {{/if}}
+    {{#if show_post_page}}
+      <div class="ui main container">
+        {{> postPage}}
+      </div>
+    {{/if}}
 
 <!-- test comment part 
     <div class="ui">

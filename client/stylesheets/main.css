@@ -19,3 +19,24 @@
 	font-weight: bolder;
 	text-align: center;
 }
+
+/* added by shuhuang
+ ******* start *************/
+#commentItem-list {
+	list-style-type: none;
+	list-style-position: outside;
+	padding: 10px 0px 0px 0px;
+	margin: 0px;
+}
+#commentItem-list li {
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 2px solid rgba(0, 0, 0, 0.05);
+	border-radius: 5px;
+	background-color: white;
+}
+#commentItem-list span {
+	padding: 0px;
+	margin: 0px;
+}
+/******* end ***************/
