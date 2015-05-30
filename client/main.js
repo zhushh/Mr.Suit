@@ -57,7 +57,9 @@ Template["main"].onRendered(function() {
                     "profile.design": {
                         "title": title,
                         "image": fileObj,
-                        "tags": tagStr
+                        "tags": tagStr,
+                        "creator": Meteor.user().username,
+                        "date": new Date()
                     }
                 }
             }
