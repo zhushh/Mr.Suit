@@ -32,6 +32,7 @@ Template.commentSubmit.events({
         throwError(error.reason);
       } else {
         $body.val('');
+        Session.set('commentSubmitErrors', {});   // clear has-error if has.
       }
     });
   }

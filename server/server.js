@@ -2,9 +2,8 @@ if (Meteor.isServer) {
   	Meteor.publish("images", function() {
   		return Images.find();
   	});
-	  Meteor.publish('comments', function(/* image */) {
-	  	//check(image, String);
-	    return Comments.find(/*{image: image} */);
+	  Meteor.publish('comments', function() {
+	    return Comments.find();
 	  });
     Meteor.publish('allUserData', function() {
         if (this.userId) {
