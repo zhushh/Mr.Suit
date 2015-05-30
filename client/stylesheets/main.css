@@ -41,3 +41,40 @@
 .invisable: {
   visibility: collapse;
 }
+/* added by shuhuang
+ ******* start *************/
+#commentItem-list {
+	list-style-type: none;
+	list-style-position: outside;
+	padding: 10px 0px 0px 0px;
+	margin: 0px;
+}
+#commentItem-list li {
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 2px solid rgba(0, 0, 0, 0.05);
+	border-radius: 5px;
+	background-color: white;
+}
+#commentItem-list span {
+	padding: 0px;
+	margin: 0px;
+}
+
+label {
+	display: block;
+	margin-bottom: 5px;
+}
+.form-group {
+	margin-bottom: 10px;
+}
+form {
+	display: block;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 2px solid rgba(0, 0, 0, 0.05);
+	border-radius: 5px;
+	background-color: white;
+	box-shadow: 0, 1px, 1px, rgba(0, 0, 0, 0.15);
+}
+/******* end ***************/
