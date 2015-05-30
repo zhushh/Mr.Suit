@@ -1,27 +1,34 @@
 Template.postItem.helpers({
 	image: function() {
-		if (Session.get('main_page_show')) {
+		if (!! this.image) {
 			return this.image;
 		} else {
 			return Session.get('currentCard').image;
 		}
 	},
+	title: function() {
+		if (!! this.title) {
+			return this.title;
+		} else {
+			return Session.get('currentCard').title;
+		}
+	},
 	creator: function() {
-		if (Session.get('main_page_show')) {
+		if (!! this.creator) {
 			return this.creator;
 		} else {
 			return Session.get('currentCard').creator;
 		}
 	},
 	date: function() {
-		if (Session.get('main_page_show')) {
-			return this.date.toString();
+		if (!! this.date) {
+			return this.date;
 		} else {
 			return Session.get('currentCard').date.toString();
 		}
 	},
 	tags: function() {
-		if (Session.get('main_page_show')) {
+		if (!! this.tags) {
 			return this.tags;
 		} else {
 			return Session.get('currentCard').tags;
@@ -34,7 +41,6 @@ Template.postItem.helpers({
 
 Template.postItem.events({
 	'click #design_image': function() {
-		Session.set('main_page_show', false);
 		Session.set('currentCard', this);
 	}
 });

@@ -1,13 +1,14 @@
-<head>
-	<title>Mr.Suit</title>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-</head>
-<body>
-	{{#if currentUser}}
-		{{> main}}
-	{{else}}
-		{{> register}}
-	{{/if}}
-</body>
+<template name ="index">
+  <head>
+  	<title>Mr.Suit</title>
+  	<meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  </head>
+  <!--不要在这里添加body标签，这样会导致有两个body，upload弹出框将无法使用-->
+  	{{#if currentUser}}
+  		{{> main}}
+  	{{else}}
+  		{{> register}}
+  	{{/if}}
+</template>

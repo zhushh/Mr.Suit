@@ -19,7 +19,28 @@
 	font-weight: bolder;
 	text-align: center;
 }
-
+.unread {
+  font-size: 15px;
+  color: white;
+  background-color: red;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  text-align: center;
+  padding-bottom: 2px;
+  right: -9px;
+  top: -5px;
+}
+.cunread{
+  top: 0.5em !important;
+  left: 110% !important; 
+}
+.visable {
+  visibility: visible;
+}
+.invisable: {
+  visibility: collapse;
+}
 /* added by shuhuang
  ******* start *************/
 #commentItem-list {
