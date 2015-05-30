@@ -10,7 +10,6 @@ Template["main"].onRendered(function() {
             if (!message['read'])
               num = num+1;
           }
-          console.log(num);
           if (num > 0) {
             if ($("#cunread").length == 0) {
                 var unread = $('<div id = "cunread" class="floating ui label red circular cunread"></div>').text(num.toString());
@@ -19,7 +18,6 @@ Template["main"].onRendered(function() {
                 $("#cunread").text(num.toString());
             }
           } else {
-            console.log(666);
             $("#message").remove(".cunread");
           }
         }
@@ -30,7 +28,7 @@ Template["main"].onRendered(function() {
         $('.sidebar').sidebar('toggle');
     });
     $('#upload').click(function(event) {
-        $('.ui.modal').modal('toggle');
+        $('.ui.modal').modal("toggle");
     });
     $('.ui.checkbox').checkbox();
     $('select.dropdown').dropdown();
@@ -76,8 +74,7 @@ Template["main"].events({
             if (err) {
                 alert("error occured when loggingout");
             }
-        })
+        });
     }
 });
-
 }

@@ -7,7 +7,6 @@ Meteor.startup(function() {
         if (!message['read'])
           num = num+1;
       }
-      console.log(num);
     }
   });
 });
