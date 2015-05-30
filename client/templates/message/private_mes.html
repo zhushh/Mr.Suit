@@ -1,0 +1,40 @@
+<template name="mesget">
+	<div class='getcontainer'>
+		<div id='mesbutton'>Message<span>{%mesnum%}</span></div>
+		<ul>
+			{{#each mes}}
+				<div class='mesT'>{{mesTitle}}</div>
+			{{/each}}
+		</ul>
+	</div>
+</template>
+
+<template name="messend">
+	<form type = "post">
+		<div class='sendcontainer'>
+		Title:
+		<input class='mesT' type='text' placeholder='title' name="mesT">
+		Content:
+		<input class='mesC' type='textarea' placeholder='Please input your message' name="mesC"/>
+		Send to:
+		<input class='receiver' type='text' placeholder='Receiver name' name="receiver">
+		 <input type="submit" class="ui blue submit button" value="Submit"/>
+	</div>
+	</form>
+</template>
+	
+<template name="meslist">
+	<div class='historyMeses'>
+		{{#each mes}}
+			<div class='mes'>
+				<h3>{{mesTitle}}</h3>
+				<div class='content'>
+					{{mesContent}}
+					<div class='date'>
+						{{mesDate}}
+					</div>
+				</div>
+			</div>
+		{{/each}}
+	</div>
+</template>

@@ -1,6 +1,30 @@
 if (Meteor.isClient) {
 
 Template["main"].onRendered(function() {
+    Meteor.startup(function() {
+      Tracker.autorun(function() {
+        if (Meteor.user()) {
+          var receive = Meteor.user()['profile']['receive'];
+          var num = 0;
+          for (message in receive) {
+            if (!message['read'])
+              num = num+1;
+          }
+          console.log(num);
+          if (num > 0) {
+            if ($("#cunread").length == 0) {
+                var unread = $('<div id = "cunread" class="floating ui label red circular cunread"></div>').text(num.toString());
+                $("#message").append(unread);
+            } else {
+                $("#cunread").text(num.toString());
+            }
+          } else {
+            console.log(666);
+            $("#message").remove(".cunread");
+          }
+        }
+      });
+    });
     $('#sidebar').click(function(event) {
         event.preventDefault();
         $('.sidebar').sidebar('toggle');
@@ -22,17 +46,20 @@ Template["main"].onRendered(function() {
             tags.push(tmp);
         }
         var tagStr = tags.join(",");
-        var fileObj = Images.insert(file);
+        var fileObj = Images.insert(file, function(err, fileObj) {
+            if (err) {
+                    alert("storage error");
+                    return;
+            }
+        });
         Meteor.users.update(
             {_id: Meteor.userId()},
             {
                 $push:{
                     "profile.design": {
                         "title": title,
-                        "image": fileObj._id,
-                        "tags": tagStr,
-                        "creator": Meteor.user().username,
-                        "date": new Date()
+                        "image": fileObj,
+                        "tags": tagStr
                     }
                 }
             }

@@ -27,15 +27,15 @@ Template["register"].events({
             "username": username,
             "password": password,
             "email": email,
-            "profile.gender": gender
+            "profile": {"gender": gender,"send":[], "receive":[]}
         }, function(err) {
             if (err) {
-                alert("error occured");
+                alert("Username has been occupied");
             }
         })
     },
     'click .login': function() {
-        var username = $("input[name='loginUser']").val();
+        var username = $("input[name='loginName']").val();
         var password = $("input[name='loginPassword']").val();
         if (username == "" || password == "") {
             alert("Username or password is wrong");
@@ -45,7 +45,7 @@ Template["register"].events({
             if (err) {
                 alert("Username or password is wrong");
             }
-        }) 
+        });
     }
 });
 
