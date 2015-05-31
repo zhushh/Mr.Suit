@@ -1,4 +1,4 @@
-Template["mesget"].helpers({
+Template["mesgetNum"].helpers({
 	mesnum:function() {
 		return 3;
 	}
