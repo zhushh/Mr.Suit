@@ -1,5 +1,5 @@
 Template.postPage.helpers({
   	comments: function() {
-    	return Comments.find({image: Session.get('currentCard').image});
+    	return Comments.find({image: this.image});
   	}
 });
