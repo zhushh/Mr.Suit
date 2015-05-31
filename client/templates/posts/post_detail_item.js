@@ -18,3 +18,13 @@ Template.postDetailItem.helpers({
     	return Images.findOne({_id: id}).url();
   	}
 });
+
+Template.postDetailItem.onRendered(function() {
+	$('#post-detail-design-image').click(function(event) {
+		event.preventDefault();
+		$('.ui.big-image.modal').modal('show');
+	});
+});
+
+Template.postDetailItem.events({
+});

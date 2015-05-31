@@ -12,7 +12,7 @@
       </div>
 
       <div class="ui image rounded bordered" id="">
-        <img src="{{getImage image}}" class="" id="post-detail-design-image">
+        <a id="post-detail-design-image"><img src="{{getImage image}}"></a>
       </div>
       <div class="extra content">
         <a>
@@ -20,6 +20,12 @@
               22 Like
         </a>
       </div>
+    </div>
+  </div>
+  <div class="ui big-image modal">
+    <i class="close icon"></i>
+    <div class="ui large image" id="post-detail-big-image">
+      <img src="{{getImage image}}">
     </div>
   </div>
 </template>
