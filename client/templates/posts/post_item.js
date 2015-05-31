@@ -7,13 +7,12 @@ Template.postItem.helpers({
   	}
 });
 Template.postItem.onRendered(function() {
-	var creator = this.data.creator;
-	var item = '.creator-' + creator;
+	var item = '.ask-for-design-' + this.data.image;
+	var target = '.design-' + this.data.image + '.popup';
 	$(item).popup({
-		popup: $('.popup'),
+		popup: $(target),
 		on: 'click',
-		inline: true,
-		prefer: 'adjacent'
+		inline: false,
 	});
 });
 Template.postItem.events({
@@ -34,6 +33,7 @@ Template.postItem.events({
       			receiver: receiver_name,
       			title   : "Ask for design"
 			};
+
 			Meteor.users.update(
 				{'_id': Meteor.users.findOne({"username": receiver_name})._id},
 				{$push: {"profile.receive": received_message}},
@@ -48,6 +48,7 @@ Template.postItem.events({
 				{$push: {"profile.send": sent_message}},
 				function(err) {
 					if (err) {
+						// to-do delete receiver's message
 						alert("Some error happened during update message");
 					}
 				}

@@ -7,8 +7,8 @@
     </div>
     <div class="content">
       <div class="header">Title: {{title}}</div>
-      <div class="date">designed by 
-        <a class="header creator-{{creator}}">{{creator}}</a>
+      <div class="creator">designed by 
+        <a class="header ask-for-design-{{id}}">{{creator}}</a>
       </div>
       <div class="meta">
         <span class="date">Joined in {{date}}</span>
@@ -27,13 +27,12 @@
             delete
       </a>
     </div>
-  </div>
-  
-  <div class="ui popup">
-    <div class="header">Do you want to send a message to ask for design for you?</div>
-    <div class="actions">
-      <div class="ui button positive agree-ask-for-design">OK</div>
-      <div class="ui button cancel-ask-for-design">NO</div>
+    <div class="ui design-{{id}} popup">
+      <div class="header">Do you want to send a message to ask for design for you?</div>
+      <div class="actions">
+        <div class="ui button positive agree-ask-for-design">OK</div>
+        <div class="ui button cancel-ask-for-design">NO</div>
+      </div>
     </div>
   </div>
 </template>

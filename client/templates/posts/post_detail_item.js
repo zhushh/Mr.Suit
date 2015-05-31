@@ -29,7 +29,7 @@ Template.postDetailItem.onRendered(function() {
 		popup: $('.popup'),
 		on: 'click',
 		inline: true,
-		prefer: 'adjacent'
+		prefer: 'opposite'
 	});
 });
 

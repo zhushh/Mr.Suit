@@ -3,3 +3,5 @@ Template.postsList.helpers({
     return ImageCards.find();
   }
 });
+Template.postsList.events({
+});
