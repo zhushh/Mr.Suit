@@ -66,12 +66,12 @@
 .onemes {
 	margin: 20px;
 }
-/*
-.reply {
+
+.message-reply {
 	display: none;
 	margin: 20px;
 }
-*/
+
 .sendcontainer {
 	float: left;
 	width: 50%;
