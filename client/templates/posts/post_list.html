@@ -1,9 +1,7 @@
 <template name="postsList">
   <div class="ui cards">
     {{#each posts}}
-    	{{#each profile.design}}
-      		{{> postItem}}
-   		{{/each}}
+      	{{> postItem}}
     {{/each}}
   </div>
 </template>

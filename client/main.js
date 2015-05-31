@@ -6,7 +6,8 @@ Template["main"].onRendered(function() {
         $('.sidebar').sidebar('toggle');
     });
     $('#upload').click(function(event) {
-        $('.ui.modal').modal('toggle');
+        event.preventDefault();
+        $('#upload-modal').modal('toggle');
     });
     $('.ui.checkbox').checkbox();
     $('select.dropdown').dropdown();
@@ -43,6 +44,7 @@ Template["main"].onRendered(function() {
             "image": fileObj._id,
             "tags": tagStr,
             "creator": Meteor.user().username,
+            "creatorId": Meteor.user()._id,
             "date": currentDate
         };
         Meteor.call('imageCardInsert', imageCard, function(err, imageCardId) {

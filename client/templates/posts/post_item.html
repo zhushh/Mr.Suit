@@ -2,11 +2,14 @@
   <div class="ui card">
     <div class="ui image">
       <a href="/postPage/{{id}}">
-        <img src="{{getImage image}}" class="" id="design_image">
+        <img src="{{getImage image}}">
       </a>
     </div>
     <div class="content">
-      <a class="header">{{title}}--By--{{creator}}</a>
+      <div class="header">Title: {{title}}</div>
+      <div class="date">designed by 
+        <a class="header creator-{{creator}}">{{creator}}</a>
+      </div>
       <div class="meta">
         <span class="date">Joined in {{date}}</span>
       </div>
@@ -23,6 +26,14 @@
         <i class="remove icon"></i>
             delete
       </a>
+    </div>
+  </div>
+  
+  <div class="ui popup">
+    <div class="header">Do you want to send a message to ask for design for you?</div>
+    <div class="actions">
+      <div class="ui button positive agree-ask-for-design">OK</div>
+      <div class="ui button cancel-ask-for-design">NO</div>
     </div>
   </div>
 </template>
