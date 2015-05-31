@@ -18,7 +18,7 @@ Template.commentSubmit.events({
     var $body = $(e.target).find('[name=body]');
     var comment = {
       content: $body.val(),
-      image: Session.get('currentCard').image // template.data._id
+      image: template.data.image
     };
 
     var errors = {};

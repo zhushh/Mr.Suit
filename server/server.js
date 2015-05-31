@@ -2,6 +2,9 @@ if (Meteor.isServer) {
   	Meteor.publish("images", function() {
   		return Images.find();
   	});
+    Meteor.publish('imageCards', function() {
+      return ImageCards.find();
+    });
 	  Meteor.publish('comments', function() {
 	    return Comments.find();
 	  });

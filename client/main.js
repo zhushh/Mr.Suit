@@ -23,6 +23,7 @@ Template["main"].onRendered(function() {
         }
         var tagStr = tags.join(",");
         var fileObj = Images.insert(file);
+        var currentDate = new Date();
         Meteor.users.update(
             {_id: Meteor.userId()},
             {
@@ -32,17 +33,27 @@ Template["main"].onRendered(function() {
                         "image": fileObj._id,
                         "tags": tagStr,
                         "creator": Meteor.user().username,
-                        "date": new Date()
+                        "date": currentDate
                     }
                 }
             }
         );
+        var imageCard = {
+            "title": title,
+            "image": fileObj._id,
+            "tags": tagStr,
+            "creator": Meteor.user().username,
+            "date": currentDate
+        };
+        Meteor.call('imageCardInsert', imageCard, function(err, imageCardId) {
+            if (error) {
+                throwError(err.reason);
+            }
+        });
     });
 });
 
-// control the show of the main page
 Template["main"].onCreated(function() {
-    Session.set('currentCard', {}); // for convernient to get card information
 });
 
 Template["main"].helpers({
@@ -59,3 +70,4 @@ Template["main"].events({
 });
 
 }
+
