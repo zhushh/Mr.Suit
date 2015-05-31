@@ -27,10 +27,10 @@ Template["register"].events({
             "username": username,
             "password": password,
             "email": email,
-            "profile.gender": gender
+            "profile": {"gender": gender,"send":[], "receive":[]}
         }, function(err) {
             if (err) {
-                alert("error occured");
+                alert("Username has been occupied");
             }
         })
     },
@@ -45,7 +45,7 @@ Template["register"].events({
             if (err) {
                 alert("Username or password is wrong");
             }
-        }) 
+        });
     }
 });
 
