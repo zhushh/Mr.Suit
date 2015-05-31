@@ -1,7 +1,9 @@
 <template name="postItem">
   <div class="ui card">
     <div class="ui image">
-      <a href="/design_detail"><img src="{{getImage image}}" id="design_image"></a>
+      <a href="/postPage/{{id}}">
+        <img src="{{getImage image}}" class="" id="design_image">
+      </a>
     </div>
     <div class="content">
       <a class="header">{{title}}--By--{{creator}}</a>
@@ -20,4 +22,3 @@
     </div>
   </div>
 </template>
-
