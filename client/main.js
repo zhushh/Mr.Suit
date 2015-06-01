@@ -12,8 +12,7 @@ Template["main"].onRendered(function() {
     $('.ui.checkbox').checkbox();
     $('select.dropdown').dropdown();
     $('.menu .item').tab();
-    $(".uploadBt").off();
-    $(document).on('click', '.uploadBt', function() {
+    $(".uploadBt").on('click', function() {
         var file = $('#file').get(0).files[0];
         var title = $("input[name='img_title']").val();
         var tmps = $('.checked');
