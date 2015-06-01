@@ -2,7 +2,10 @@
   <div class="ui bordered rounded" id="post-detail-item">
     <div class="ui  rounded">
       <div class="content">
-        <a class="header">{{title}} --By-- {{creator}}</a>
+        <div class="header">Title: {{title}}</div>
+        <div class="creator">designed by 
+          <a class="header ask-for-design">{{creator}}</a>
+        </div>
         <div class="meta">
           <span class="date">Joined in {{date}}</span>
         </div>
@@ -10,13 +13,29 @@
           {{tags}}
         </div>
       </div>
-        <img src="{{getImage image}}" class="ui centered image" id="post-detail-design-image">
+      <div class="ui image rounded bordered" id="">
+        <a id="post-detail-design-image"><img src="{{getImage image}}"></a>
+      </div>
       <div class="extra content">
         <a>
           <i class="heart icon"></i>
               23 Like
         </a>
       </div>
+    </div>
+  </div>
+  <div class="ui modal" id="big-image-modal">
+    <i class="close icon"></i>
+    <div class="ui large image" id="post-detail-big-image">
+      <img src="{{getImage image}}">
+    </div>
+  </div>
+
+  <div class="ui popup">
+    <div class="header">Do you want to send a message to ask for design for you?</div>
+    <div class="actions">
+      <div class="ui button positive agree-ask-for-design">OK</div>
+      <div class="ui button cancel-ask-for-design">NO</div>
     </div>
   </div>
 </template>
