@@ -1,6 +1,6 @@
 <template name="postDetailItem">
   <div class="ui bordered rounded" id="post-detail-item">
-    <div class="ui card rounded">
+    <div class="ui  rounded">
       <div class="content">
         <a class="header">{{title}} --By-- {{creator}}</a>
         <div class="meta">
@@ -10,14 +10,11 @@
           {{tags}}
         </div>
       </div>
-
-      <div class="ui image rounded bordered" id="">
-        <img src="{{getImage image}}" class="" id="post-detail-design-image">
-      </div>
+        <img src="{{getImage image}}" class="ui centered image" id="post-detail-design-image">
       <div class="extra content">
         <a>
           <i class="heart icon"></i>
-              22 Like
+              23 Like
         </a>
       </div>
     </div>
