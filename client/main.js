@@ -1,30 +1,6 @@
 if (Meteor.isClient) {
 
 Template["main"].onRendered(function() {
-    Meteor.startup(function() {
-      Tracker.autorun(function() {
-        if (Meteor.user()) {
-          var receive = Meteor.user()['profile']['receive'];
-          var num = 0;
-          for (message in receive) {
-            if (!message['read'])
-              num = num+1;
-          }
-          console.log(num);
-          if (num > 0) {
-            if ($("#cunread").length == 0) {
-                var unread = $('<div id = "cunread" class="floating ui label red circular cunread"></div>').text(num.toString());
-                $("#message").append(unread);
-            } else {
-                $("#cunread").text(num.toString());
-            }
-          } else {
-            console.log(666);
-            $("#message").remove(".cunread");
-          }
-        }
-      });
-    });
     $('#sidebar').click(function(event) {
         event.preventDefault();
         $('.sidebar').sidebar('toggle');
@@ -46,25 +22,27 @@ Template["main"].onRendered(function() {
             tags.push(tmp);
         }
         var tagStr = tags.join(",");
-        var fileObj = Images.insert(file, function(err, fileObj) {
-            if (err) {
-                    alert("storage error");
-                    return;
-            }
-        });
+        var fileObj = Images.insert(file);
         Meteor.users.update(
             {_id: Meteor.userId()},
             {
                 $push:{
                     "profile.design": {
                         "title": title,
-                        "image": fileObj,
-                        "tags": tagStr
+                        "image": fileObj._id,
+                        "tags": tagStr,
+                        "creator": Meteor.user().username,
+                        "date": new Date()
                     }
                 }
             }
         );
     });
+});
+
+// control the show of the main page
+Template["main"].onCreated(function() {
+    Session.set('currentCard', {}); // for convernient to get card information
 });
 
 Template["main"].helpers({

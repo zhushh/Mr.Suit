@@ -1,12 +1,12 @@
 <template name="postItem">
   <div class="ui card">
     <div class="ui image">
-      <img src="{{image.url}}" class="">
+      <a href="/design_detail"><img src="{{getImage image}}" id="design_image"></a>
     </div>
     <div class="content">
-      <a class="header">{{currentUser.username}}</a>
+      <a class="header">{{title}}--By--{{creator}}</a>
       <div class="meta">
-        <span class="date">Joined in {{currentUser.createdAt}}</span>
+        <span class="date">Joined in {{date}}</span>
       </div>
       <div class="description">
         {{tags}}
@@ -14,9 +14,10 @@
     </div>
     <div class="extra content">
       <a>
-        <i class="user icon"></i>
-            22 Friends
+        <i class="heart icon"></i>
+            22 Like
       </a>
     </div>
   </div>
 </template>
+

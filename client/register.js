@@ -45,7 +45,7 @@ Template["register"].events({
             if (err) {
                 alert("Username or password is wrong");
             }
-        }); 
+        });
     }
 });
 
