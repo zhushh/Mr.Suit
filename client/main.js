@@ -6,6 +6,9 @@ Template["main"].onRendered(function() {
         event.preventDefault();
         $('.sidebar').sidebar('toggle');
     });
+    $('.home_page').click(function(event){
+        Session.set('isSearch', '');
+    });
     $('#upload').click(function(event) {
         event.preventDefault();
         $('#upload-modal').modal('toggle');
@@ -53,6 +56,7 @@ Template["main"].onRendered(function() {
             if (err) {
                 throwError(err.reason);
             }
+            
         });
 
     });
