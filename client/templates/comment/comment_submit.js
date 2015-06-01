@@ -12,6 +12,9 @@ Template.commentSubmit.helpers({
 });
 
 Template.commentSubmit.events({
+  'click .submit': function() {
+    $('#submit-form').submit();
+  },
   'submit form': function(e, template) {
     e.preventDefault();
 
