@@ -54,6 +54,9 @@ Template["main"].onRendered(function() {
 });
 
 Template["main"].onCreated(function() {
+    
+      Session.setDefault('isSearch', "");
+    
 });
 
 Template["main"].helpers({
@@ -66,6 +69,11 @@ Template["main"].events({
                 alert("error occured when loggingout");
             }
         })
+    },
+    'click #searchBT': function() {
+        var search_content = $("#search").val();
+        Session.set('isSearch', search_content);
+        //var result = Meteor.users.find()
     }
 });
 
