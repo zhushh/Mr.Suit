@@ -25,20 +25,20 @@ Template["main"].onRendered(function() {
         var tagStr = tags.join(",");
         var fileObj = Images.insert(file);
         var currentDate = new Date();
-        Meteor.users.update(
-            {_id: Meteor.userId()},
-            {
-                $push:{
-                    "profile.design": {
-                        "title": title,
-                        "image": fileObj._id,
-                        "tags": tagStr,
-                        "creator": Meteor.user().username,
-                        "date": currentDate
-                    }
-                }
-            }
-        );
+//        Meteor.users.update(
+//            {_id: Meteor.userId()},
+//            {
+//                $push:{
+//                    "profile.design": {
+//                        "title": title,
+//                        "image": fileObj._id,
+//                        "tags": tagStr,
+//                        "creator": Meteor.user().username,
+//                        "date": currentDate
+//                    }
+//                }
+//            }
+//        );
         var imageCard = {
             "title": title,
             "image": fileObj._id,
