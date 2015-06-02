@@ -4,4 +4,5 @@ Template.myupLoad.helpers({
   }
 });
 Template.myupLoad.events({
-}); 
+});
+

@@ -78,4 +78,4 @@ Template.uploadDetailItem.events({
 		event.preventDefault();
 		$('.popup').popup('hide');
 	}
-}); 
+});
