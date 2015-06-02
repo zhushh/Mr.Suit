@@ -12,7 +12,8 @@ Template["main"].onRendered(function() {
     $('.ui.checkbox').checkbox();
     $('select.dropdown').dropdown();
     $('.menu .item').tab();
-    $(".uploadBt").on('click', function() {
+    $('.uploadBt').off();
+    $('.uploadBt').on('click', function() {
         var file = $('#file').get(0).files[0];
         var title = $("input[name='img_title']").val();
         var tmps = $('.checked');
@@ -47,7 +48,7 @@ Template["main"].onRendered(function() {
             "date": currentDate
         };
         Meteor.call('imageCardInsert', imageCard, function(err, imageCardId) {
-            if (error) {
+            if (err) {
                 throwError(err.reason);
             }
         });
@@ -55,6 +56,7 @@ Template["main"].onRendered(function() {
 });
 
 Template["main"].onCreated(function() {
+    Session.setDefault('isSearch', "");
 });
 
 Template["main"].helpers({
@@ -67,6 +69,12 @@ Template["main"].events({
                 alert("error occured when loggingout");
             }
         })
+    },
+    'click #searchBT': function() {
+        var search_content = $("#search").val();
+        Session.set('isSearch', search_content);
+        $("#search").val() 
+        //var result = Meteor.users.find()
     }
 });
 
