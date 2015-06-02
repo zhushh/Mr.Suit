@@ -75,8 +75,14 @@ Template["main"].events({
     'click #searchBT': function() {
         var search_content = $("#search").val();
         Session.set('isSearch', search_content);
-        $("#search").val() 
+        $("#search").val("");
         //var result = Meteor.users.find()
+    },
+    'click #myUpload': function() {
+        Session.set("isSearch", "");
+    },
+    'click .item.home_page': function() {
+        Session.set("isSearch", "");
     }
 });
 
