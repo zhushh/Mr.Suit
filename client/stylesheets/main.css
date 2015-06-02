@@ -87,3 +87,11 @@
 }
 
 /******* end ***************/
+
+.ui.toggle.checkbox label {
+  padding-right: 0.5em;
+}
+
+.ui.toggle.checkbox label {
+  padding-left: 3.8rem;
+}

@@ -1,7 +1,6 @@
 if (Meteor.isClient) {
 
 Template["main"].onRendered(function() {
-    console.log("tetytyu");
     $('#sidebar').click(function(event) {
         event.preventDefault();
         $('.sidebar').sidebar('toggle');
