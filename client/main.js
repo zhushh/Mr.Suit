@@ -23,7 +23,7 @@ Template["main"].onRendered(function() {
             tags.push(tmp);
         }
         var tagStr = tags.join(",");
-        var fileObj = Images.insert(file);
+        var fileObj = Images.insert(file);  // 此时用户可以随意插入图片数据
         var currentDate = new Date();
 //        Meteor.users.update(
 //            {_id: Meteor.userId()},
@@ -45,11 +45,13 @@ Template["main"].onRendered(function() {
             "tags": tagStr,
             "creator": Meteor.user().username,
             "creatorId": Meteor.user()._id,
-            "date": currentDate
+            "date": currentDate,
+            "likers": []
         };
         Meteor.call('imageCardInsert', imageCard, function(err, imageCardId) {
             if (err) {
-                throwError(err.reason);
+                Images.remove(file);    // 信息插入不成功,需要删除已经存储的文件
+                throw Error(err.reason);
             }
         });
     });

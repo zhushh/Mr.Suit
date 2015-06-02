@@ -18,10 +18,18 @@
       </div>
     </div>
     <div class="extra content">
-      <a>
+    {{#if liker}}
+      <a class="mark-as-unlike">
         <i class="heart icon"></i>
-            22 Like
+            {{likers_num}} Like
       </a>
+    {{/if}}
+    {{#if checkliker liker}}
+      <a class="mark-as-like">
+        <i class="empty heart icon"></i>
+            {{likers_num}} Like
+      </a>
+    {{/if}}
       <a>
         <i class="remove icon"></i>
             delete

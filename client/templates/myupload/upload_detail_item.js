@@ -16,6 +16,21 @@ Template.uploadDetailItem.helpers({
 	},
   	getImage: function(id) {
     	return Images.findOne({_id: id}).url();
+  	},
+  	likers_num: function() {
+  		return this.likers.length;
+  	},
+  	liker: function() {
+  		var username = Meteor.user().username;
+  		for (var i = 0; i < this.likers.length; i++) {
+  			if (this.likers[i].name == username) {
+  				return true;	// is a liker
+  			}
+  		}
+  		return false;	// not a liker
+  	},
+  	checkliker: function(liker) {
+  		return !liker;
   	}
 });
 
@@ -77,5 +92,19 @@ Template.uploadDetailItem.events({
 	'click .cancel-ask-for-design': function(event) {
 		event.preventDefault();
 		$('.popup').popup('hide');
+	},
+	'click .mark-as-like': function(event) {
+		Meteor.call('imageCardIncLikers', this, Meteor.user().username, function(err) {
+			if (err) {
+				throw Error(err.reason);
+			}
+		});
+	},
+	'click .mark-as-unlike': function(event) {
+		Meteor.call('imageCardDecLikers', this, Meteor.user().username, function(err) {
+			if (err) {
+				throw Error(err.reason);
+			}
+		});
 	}
 }); 
