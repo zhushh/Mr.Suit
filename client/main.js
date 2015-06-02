@@ -63,9 +63,7 @@ Template["main"].onRendered(function() {
 });
 
 Template["main"].onCreated(function() {
-    
-      Session.setDefault('isSearch', "");
-    
+    Session.setDefault('isSearch', "");
 });
 
 Template["main"].helpers({

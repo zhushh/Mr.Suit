@@ -36,39 +36,47 @@ Template.postDetailItem.onRendered(function() {
 Template.postDetailItem.events({
 	'click .agree-ask-for-design': function(event) {
 		event.preventDefault();
-		var receiver_name = this.creator;
-		if (receiver_name != Meteor.user().username) {
+
+		var receiver = Meteor.users.findOne({'username': this.creator});
+		if (!!receiver.username && receiver.username != Meteor.user().username) {
 			var received_message = {
       			content : "I want to ask you for design. Can you help me?",
       			sender  : Meteor.user().username,
-      			receiver: receiver_name,
+      			receiver: receiver.username,
       			title   : "Ask for design",
       			read    : false  //in order to judge whether the message is readed
 			};
 			var sent_message = {
       			content : "I want to ask you for design. Can you help me?",
       			sender  : Meteor.user().username,
-      			receiver: receiver_name,
+      			receiver: receiver.username,
       			title   : "Ask for design"
 			};
-			Meteor.users.update(
-				{'_id': Meteor.users.findOne({"username": receiver_name})._id},
-				{$push: {"profile.receive": received_message}},
+
+			Meteor.call(
+				'insertReceivedAndSentMessage',
+				Meteor.user(),
+				receiver,
+				sent_message,
+				received_message,
 				function(err) {
-					if (err) {
-						alert("Some error happened during update message");
+					if (err.error === 'sent_mesg') {
+						alert('Failed to send message!');
+					} else if (err.error === 'invalid-user') {
+						alert('Invalid-user!!!');
+					} else if (err.error === 'sender-name') {
+						alert("Sender's name diff!!!");
+					} else if (err.error === 'receiver-name') {
+						alert("receiver's name diff!!!");
+					} else if (err.error === 'message-diff') {
+						alert("message-diff!!!");
+					} else {
+						alert("Message send successfully!");
 					}
 				}
 			);
-			Meteor.users.update(
-				{'_id': Meteor.user()._id},
-				{$push: {"profile.send": sent_message}},
-				function(err) {
-					if (err) {
-						alert("Some error happened during update message");
-					}
-				}
-			);
+		} else if (!receiver.username) {
+			alert("Can't find receiver!");
 		} else {
 			alert("This designer is yourself");
 		}
