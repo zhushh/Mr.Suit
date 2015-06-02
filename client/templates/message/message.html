@@ -59,16 +59,21 @@
 								</div>
 								<div class='reply'>
 									<div class="ui form">
-										<div class='field'>
-											<textarea placeholder="input your reply"></textarea>
-											<i class="mail outline icon"></i>
-										</div>
+										<form id='reply'>
+											<div class='field'>
+												<textarea placeholder="input your reply" title="{{title}}" name="content"></textarea>
+												<i class="mail outline icon"></i>
+											</div>
+											<div class="ui form">
+												<input type="submit" class="ui blue submit button" value="Submit"/>
+											</div>
+									</form>
 									</div>
 								</div>
 								<div class='mesdetails'>
 									<i class="ellipsis horizontal icon"></i>
 									<i class="outline chat icon"></i>
-									<i class="trash icon"></i>
+									<i class="trash icon" title="{{title}}"></i>
 								</div>
 							</div>							
 						</div>
@@ -78,26 +83,30 @@
 			</div>
 			<div class='ui tab' id='stab' data-tab='send'>
 				<div class='sendcontainer'>
+					<form id="send">
 					<div><h2>Title:</h2></div>
 					<div class='ui icon input stitle'>
 						
-						<input class='mesT' type='text' placeholder='title'>
+						<input class='mesT' type='text' placeholder='title' name="title">
 					</div>
 					<div class='ui form'>
 						<div><h2>Content:</h2></div>
 					<div class='ui icon input scontent'>
 					<div class='field'>
-						<textarea placeholder='Please input your message'></textarea>
+						<textarea placeholder='Please input your message' name="content"></textarea>
 					</div>
 					</div>
+					<div class="ui form">
+						<input type="submit" class="ui blue submit button" value="Submit"/>
 					</div>
+				</div>
 					
 						<div><h2>Send to:</h2></div>
 					<div class='ui icon input sreceiver'>
-						<input id='receiver' type='text' placeholder='Receiver name'>
+						<input id='receiver' type='text' placeholder='Receiver name' name="receiver">
 						<i class="users icon"></i>
 					</div>
-					
+					</form>
 				</div>
 				
 				<div class='recentReceiver'>

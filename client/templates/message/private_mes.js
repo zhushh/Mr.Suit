@@ -1,4 +1,4 @@
-Template.messend.events({
+/*Template.messend.events({
   'submit form':function(e) {
     e.preventDefault();
 
@@ -59,4 +59,4 @@ Template.messend.events({
         );
     }
   }
-});
+});*/

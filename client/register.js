@@ -27,12 +27,18 @@ Template["register"].events({
             "username": username,
             "password": password,
             "email": email,
-            "profile": {"gender": gender,"send":[], "receive":[]}
+            "profile": {"gender": gender}
         }, function(err) {
             if (err) {
                 alert("Username has been occupied");
             }
         })
+        Messages.insert({
+            "username": username,
+            "receive" : {},
+            "send"    : {},
+            "rencent" : []
+        });
     },
     'click .login': function() {
         var username = $("input[name='loginName']").val();
