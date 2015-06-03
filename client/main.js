@@ -69,6 +69,9 @@ Template["main"].events({
     },
     'click .item.home_page': function() {
         Session.set("isSearch", "");
+    },
+    'click .item.myLike': function() {
+        Session.set('isSearch', "");
     }
 });
 
