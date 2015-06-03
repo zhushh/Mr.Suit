@@ -38,7 +38,8 @@ Template['mesmain'].helpers({
         }
 
         function sortDate (a, b) {
-            return a.mesDate < b.mesDate ? 1 : -1;
+            return a.mesDate < b.mesDate ? -1 : 1;
+            console.log("ok");
         }
         mes.sort(sortDate);
         
@@ -88,7 +89,7 @@ Template['mesmain'].events({
     t = t.parentNode.parentNode;
     t = t.children;
     var i=0;
-    while(t[i].className !='reply') {i++;}
+    while(t[i].className !='message-reply') {i++;}
     if (t[i].style.display != ''){ 
       t[i].style.display='';
     } else {
