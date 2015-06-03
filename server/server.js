@@ -13,4 +13,7 @@ if (Meteor.isServer) {
             return Meteor.users.find({}, {fields: {username: 1, createdAt: 1, profile: 1, emails: 1}});
         }
     });
+     Meteor.publish('message', function() {
+      return Messages.find();
+    });
 }

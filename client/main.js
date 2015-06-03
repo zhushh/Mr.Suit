@@ -25,20 +25,6 @@ Template["main"].onRendered(function() {
         var tagStr = tags.join(",");
         var fileObj = Images.insert(file);  // 此时用户可以随意插入图片数据
         var currentDate = new Date();
-//        Meteor.users.update(
-//            {_id: Meteor.userId()},
-//            {
-//                $push:{
-//                    "profile.design": {
-//                        "title": title,
-//                        "image": fileObj._id,
-//                        "tags": tagStr,
-//                        "creator": Meteor.user().username,
-//                        "date": currentDate
-//                    }
-//                }
-//            }
-//        );
         var imageCard = {
             "title": title,
             "image": fileObj._id,
