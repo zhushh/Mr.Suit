@@ -5,9 +5,6 @@ Template["main"].onRendered(function() {
         event.preventDefault();
         $('.sidebar').sidebar('toggle');
     });
-    $('.home_page').click(function(event){
-        Session.set('isSearch', '');
-    });
     $('#upload').click(function(event) {
         event.preventDefault();
         $('#upload-modal').modal('toggle');
@@ -26,38 +23,23 @@ Template["main"].onRendered(function() {
             tags.push(tmp);
         }
         var tagStr = tags.join(",");
-        var fileObj = Images.insert(file);
+        var fileObj = Images.insert(file);  // 此时用户可以随意插入图片数据
         var currentDate = new Date();
-        Meteor.users.update(
-            {_id: Meteor.userId()},
-            {
-                $push:{
-                    "profile.design": {
-                        "title": title,
-                        "image": fileObj._id,
-                        "tags": tagStr,
-                        "creator": Meteor.user().username,
-                        "date": currentDate
-                    }
-                }
-            }
-        );
-
         var imageCard = {
             "title": title,
             "image": fileObj._id,
             "tags": tagStr,
             "creator": Meteor.user().username,
             "creatorId": Meteor.user()._id,
-            "date": currentDate
+            "date": currentDate,
+            "likers": []
         };
         Meteor.call('imageCardInsert', imageCard, function(err, imageCardId) {
             if (err) {
-                throwError(err.reason);
+                Images.remove(file);    // 信息插入不成功,需要删除已经存储的文件
+                throw Error(err.reason);
             }
-            
         });
-
     });
 });
 
@@ -79,8 +61,14 @@ Template["main"].events({
     'click #searchBT': function() {
         var search_content = $("#search").val();
         Session.set('isSearch', search_content);
-        $("#search").val() 
+        $("#search").val("");
         //var result = Meteor.users.find()
+    },
+    'click #myUpload': function() {
+        Session.set("isSearch", "");
+    },
+    'click .item.home_page': function() {
+        Session.set("isSearch", "");
     }
 });
 
