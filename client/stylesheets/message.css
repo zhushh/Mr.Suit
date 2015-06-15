@@ -1,4 +1,4 @@
-span {
+.messpan {
 	background-color: red;
 	height:15px;
 	width:20px;
@@ -9,6 +9,14 @@ span {
 	border-radius: 20%;
 }
 .littlepoint {
+	background-color: red;
+	height:15px;
+	width:20px;
+	display:inline-block;
+	font-size:15px;
+	color:white;
+	padding-left: 4px;
+	border-radius: 20%;
 	height:5px;
 	width:5px;
 	float:right;
@@ -58,10 +66,12 @@ span {
 .onemes {
 	margin: 20px;
 }
-.reply {
+
+.message-reply {
 	display: none;
 	margin: 20px;
 }
+
 .sendcontainer {
 	float: left;
 	width: 50%;

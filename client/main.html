@@ -1,23 +1,19 @@
 <template name="main">
   <!--sidebar-->
   <div class="ui inverted left inline vertical sidebar menu">
-    <a class="item" href='/'>
+    <a class="item home_page" href='/'>
       <i class="home icon"></i>
       Home
     </a>
-    <a class="item"  href="/send_messages">
+    <a class="item"  href="/message">
       <i class="mail icon"></i>
-      Sent Messages
+      Messages
     </a>
-    <a class="item" href = "/received_messages">
-      <i class="mail icon"></i>
-      Received Messages
-    </a>
-    <a class="item">
+    <a class="item myLike" href="/myLike">
       <i class="heart icon"></i>
       Like
     </a>
-    <a class="item" id="myUpload">
+    <a class="item" id="myUpload" href="/my_upload">
       <i class="upload icon"></i>
       MyUpload
     </a>
@@ -31,18 +27,16 @@
       <a class="item" id="upload">
         <i class="upload icon"></i> Upload
       </a>
-      <a class="item" href="/send_message" id = "message">
-        <i class="mail icon"></i> 
-        Messages
-      </a>
       <div class="right menu">
         <div class="item">
-          <div class="ui icon input">
-            <input type="text" placeholder="Search...">
-            <i class="search link icon"></i>
+          <div class="ui mini icon input">
+            <input type="text" placeholder="Search..." id="search">
+            <a class="item" href = "/searchPage" id='searchBT'>
+              <i class="search link icon"></i>
+            </a>
           </div>
         </div>
-        <a class="ui item" id="sign_out">
+        <a class="ui item" id="sign_out" href="/">
           <i class="sign out icon"></i>
         </a>
       </div>
@@ -53,7 +47,7 @@
     </div>
   </div>
   <!--upload-->
-  <div class="ui modal">
+  <div class="ui modal" id="upload-modal">
     <i class="close icon"></i>
     <div class="header">
     Upload Your Design:
@@ -69,27 +63,27 @@
       </div>
       <div class="left aligned stackable divided grid segment">
         <h4>Tag:　
-          <div class="ui test checkbox">
+          <div class="ui test toggle checkbox">
             <input type="checkbox">
             <label>man</label>
           </div>
-          <div class="ui test checkbox">
+          <div class="ui test toggle checkbox">
             <input type="checkbox">
             <label>woman</label>
           </div>
-          <div class="ui test checkbox">
+          <div class="ui test toggle checkbox">
             <input type="checkbox">
             <label>youth</label>
           </div>
-          <div class="ui test checkbox">
+          <div class="ui test toggle checkbox">
             <input type="checkbox">
             <label>elder</label>
           </div>
-          <div class="ui test checkbox">
+          <div class="ui test toggle checkbox">
             <input type="checkbox">
             <label>single</label>
           </div>
-          <div class="ui test checkbox">
+          <div class="ui test toggle checkbox">
             <input type="checkbox">
             <label>couple</label>
           </div>

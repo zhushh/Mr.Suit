@@ -61,14 +61,11 @@
 	margin: 0px;
 }
 
-label {
+#submit-form label {
 	display: block;
 	margin-bottom: 5px;
 }
-.form-group {
-	margin-bottom: 10px;
-}
-form {
+#submit-form {
 	display: block;
 	padding: 10px;
 	margin-bottom: 10px;
@@ -77,4 +74,28 @@ form {
 	background-color: white;
 	box-shadow: 0, 1px, 1px, rgba(0, 0, 0, 0.15);
 }
+#post-detail-item {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 2px solid rgba(0, 0, 0, 0.05);
+	border-radius: 5px;
+	background-color: white;
+}
+#post-detail-big-image {
+	width:100%;
+}
+
 /******* end ***************/
+
+.ui.toggle.checkbox label {
+  padding-right: 0.5em;
+}
+
+.ui.toggle.checkbox label {
+  padding-left: 3.8rem;
+}
+
+
+
+

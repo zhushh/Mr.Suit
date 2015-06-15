@@ -6,6 +6,7 @@
 
 meteor-platform
 jquery
+semantic:ui-css
 semantic:ui-sidebar
 accounts-password
 cfs:standard-packages
@@ -14,4 +15,3 @@ cfs:ejson-file
 iron:router
 accounts-base
 reactive-var
-semantic:ui-css

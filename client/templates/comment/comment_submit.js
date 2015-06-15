@@ -12,13 +12,16 @@ Template.commentSubmit.helpers({
 });
 
 Template.commentSubmit.events({
+  'click .submit': function() {
+    $('#submit-form').submit();
+  },
   'submit form': function(e, template) {
     e.preventDefault();
 
     var $body = $(e.target).find('[name=body]');
     var comment = {
       content: $body.val(),
-      image: Session.get('currentCard').image // template.data._id
+      image: template.data.image
     };
 
     var errors = {};

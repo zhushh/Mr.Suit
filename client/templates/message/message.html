@@ -2,7 +2,7 @@
 	<i class="mail icon"></i>
 	Message
 	{{# if mesnum!=0}}
-		<span>{{mesnum}}</span>
+		<span class="messpan">{{mesnum}}</span>
 	{{/if}}
 	
 </template>
@@ -57,7 +57,7 @@
 									
 									{{/each}}
 								</div>
-								<div class='reply'>
+								<div class='message-reply'>
 									<div class="ui form">
 										<form id='reply'>
 											<div class='field'>
@@ -73,7 +73,7 @@
 								<div class='mesdetails'>
 									<i class="ellipsis horizontal icon"></i>
 									<i class="outline chat icon"></i>
-									<i class="trash icon" title="{{title}}"></i>
+									<i class="trash icon" title="{{title}}" name="trash"></i>
 								</div>
 							</div>							
 						</div>
@@ -84,28 +84,27 @@
 			<div class='ui tab' id='stab' data-tab='send'>
 				<div class='sendcontainer'>
 					<form id="send">
-					<div><h2>Title:</h2></div>
-					<div class='ui icon input stitle'>
-						
-						<input class='mesT' type='text' placeholder='title' name="title">
-					</div>
-					<div class='ui form'>
-						<div><h2>Content:</h2></div>
-					<div class='ui icon input scontent'>
-					<div class='field'>
-						<textarea placeholder='Please input your message' name="content"></textarea>
-					</div>
-					</div>
-					<div class="ui form">
-						<input type="submit" class="ui blue submit button" value="Submit"/>
-					</div>
-				</div>
+						<div><h2>Title:</h2></div>
+						<div class='ui icon input stitle'>
+							<input class='mesT' type='text' placeholder='title' name="title">
+						</div>
+						<div class='ui form'>
+							<div><h2>Content:</h2></div>
+							<div class='ui icon input scontent'>
+								<div class='field'>
+									<textarea placeholder='Please input your message' name="content"></textarea>
+								</div>
+							</div>
+						</div>
 					
 						<div><h2>Send to:</h2></div>
-					<div class='ui icon input sreceiver'>
-						<input id='receiver' type='text' placeholder='Receiver name' name="receiver">
-						<i class="users icon"></i>
-					</div>
+						<div class='ui icon input sreceiver'>
+							<input id='receiver' type='text' placeholder='Receiver name' name="receiver">
+							<i class="users icon"></i>
+						</div>
+						<div class="ui form">
+							<input type="submit" class="ui blue submit button" value="Submit"/>
+						</div>
 					</form>
 				</div>
 				
@@ -119,11 +118,11 @@
 						</div>		
 					{{/each}}
 					</div>
-					<h2>Search Receiver:</h2>
+					<!--<h2>Search Receiver:</h2>
 					<div class='ui icon input'>
 						<input class='receiver' type='text' placeholder='Receiver name'>
 						<i class="search icon"></i>
-					</div>
+					</div>-->
 					<div class="ui animated list">
 						{{#each searchReceivers}}
 						<div class='item namelist'>

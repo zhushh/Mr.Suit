@@ -27,17 +27,17 @@ Template["register"].events({
             "username": username,
             "password": password,
             "email": email,
-            "profile": {"gender": gender}
+            "profile": {"gender": gender,"send":[], "receive":[]}
         }, function(err) {
             if (err) {
                 alert("Username has been occupied");
             }
-        })
+        });
         Messages.insert({
             "username": username,
             "receive" : {},
             "send"    : {},
-            "rencent" : []
+            "recent" : []
         });
     },
     'click .login': function() {
