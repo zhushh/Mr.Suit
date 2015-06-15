@@ -2,16 +2,16 @@
   {{> postDetailItem}}
 
   <div class="ui comment">
-    {{#if currentUser}}
-      {{> commentSubmit}}
-    {{else}}
-      <p>Please log in to leave a comment.</p>
-    {{/if}}
-  
     <ul class="comments" id="commentItem-list">
       {{#each comments}}
         {{> commentItem}}
       {{/each}}
     </ul>
+
+    {{#if currentUser}}
+      {{> commentSubmit}}
+    {{else}}
+      <p>Please log in to leave a comment.</p>
+    {{/if}}
   </div>
 </template>
