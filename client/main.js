@@ -40,6 +40,7 @@ Template["main"].onRendered(function() {
                 throw Error(err.reason);
             }
         });
+        Router.go('/my_upload');
     });
 });
 
