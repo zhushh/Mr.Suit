@@ -76,4 +76,3 @@ Template["main"].events({
 });
 
 }
-

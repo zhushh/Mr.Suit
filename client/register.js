@@ -37,7 +37,7 @@ Template["register"].events({
             "username": username,
             "receive" : {},
             "send"    : {},
-            "rencent" : []
+            "recent" : []
         });
     },
     'click .login': function() {

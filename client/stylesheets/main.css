@@ -1,3 +1,102 @@
+/*
+.main.container {
+    width: 80%;
+    margin: 0 auto;
+    right: 0;
+    max-width: 1140px;
+}
+.img_input {
+	margin-bottom: 15px;
+}
+.content {
+	text-align: center;
+}
+.register_container {
+	width: 400px;
+	margin: 100px auto;
+}
+.register_title {
+	font-size: 60px;
+	font-weight: bolder;
+	text-align: center;
+}
+.unread {
+  font-size: 15px;
+  color: white;
+  background-color: red;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  text-align: center;
+  padding-bottom: 2px;
+  right: -9px;
+  top: -5px;
+}
+.cunread{
+  top: 0.5em !important;
+  left: 110% !important; 
+}
+.visable {
+  visibility: visible;
+}
+.invisable: {
+  visibility: collapse;
+}
+/* added by shuhuang
+ ******* start *************/
+#commentItem-list {
+	list-style-type: none;
+	list-style-position: outside;
+	padding: 10px 0px 0px 0px;
+	margin: 0px;
+}
+#commentItem-list li {
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 2px solid rgba(0, 0, 0, 0.05);
+	border-radius: 5px;
+	background-color: white;
+}
+#commentItem-list span {
+	padding: 0px;
+	margin: 0px;
+}
+
+#submit-form label {
+	display: block;
+	margin-bottom: 5px;
+}
+#submit-form {
+	display: block;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 2px solid rgba(0, 0, 0, 0.05);
+	border-radius: 5px;
+	background-color: white;
+	box-shadow: 0, 1px, 1px, rgba(0, 0, 0, 0.15);
+}
+#post-detail-item {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 2px solid rgba(0, 0, 0, 0.05);
+	border-radius: 5px;
+	background-color: white;
+}
+#post-detail-big-image {
+	width:100%;
+}
+
+/******* end ***************/
+
+.ui.toggle.checkbox label {
+  padding-right: 0.5em;
+}
+
+.ui.toggle.checkbox label {
+  padding-left: 3.8rem;
+}*/
+
 .main.container {
     width: 80%;
     margin: 0 auto;
@@ -95,7 +194,6 @@
 .ui.toggle.checkbox label {
   padding-left: 3.8rem;
 }
-
 
 
 
