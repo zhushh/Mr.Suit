@@ -2,7 +2,27 @@ Meteor.subscribe('message');
 
 Template["mesget"].helpers({
   mesnum:function() {
-    return 3;
+
+    var count = 0;
+
+        var messages = Messages.findOne({"username":Meteor.user()["username"]});
+        var received_messages = messages["receive"];
+        var contactors = messages["recent"];  //contactor means all the contactors
+
+        for (var j = contactors.length -1 ; j >= 0; --j) {
+          var mesa = contactors[j];
+          for (var i in received_messages[mesa]) {
+            var message = received_messages[mesa][i]
+            if (message["read"] == false)
+              count++;
+          }
+        }
+
+
+    console.log(count);
+    if (count == 0)
+      $(".messpan").hide();
+    return count;
   }
 });
 Template["Mrsuit"].helpers({
@@ -17,7 +37,6 @@ Template['mesmain'].helpers({
       var mes = [];
       var mesT = [];
       var messages = Messages.findOne({"username":Meteor.user()["username"]});
-
       var received_messages = messages["receive"];
       var sent_messages = messages["send"];
       var contactors = messages["recent"];  //contactor means all the contactors
@@ -81,6 +100,36 @@ Template['mesmain'].events({
   'click .ellipsis.horizontal.icon': function(e) {
     var t = e.target;
     t.className='angle up icon';
+    var name = $(e.target).attr("name");
+
+    var messages = Messages.findOne({"username":Meteor.user()["username"]});
+    var received_messages = messages["receive"];
+    var user_id = messages["_id"];
+    var contactors = messages["recent"];
+
+    console.log(name);
+
+
+    for (var j = contactors.length -1 ; j >= 0; --j) {
+      var mesa = contactors[j];
+      console.log(mesa);
+      if (mesa == name) {
+        for (var i in received_messages[mesa]) {
+          received_messages[mesa][i]["read"] = true;
+        }
+        break;
+      }
+    }
+
+    Messages.update(
+        {"_id":user_id},
+        {$set:{"receive":received_messages}},function(err) {
+          if (err) {
+            alert("Some error happened during update");
+          }
+    });
+
+
     t = t.parentNode.parentNode;
     t = t.children;
     var i=0;
@@ -175,8 +224,20 @@ Template['mesmain'].events({
     name = name.innerText;
     receiver.value = name;
   },
+  'click #history':function(e) {
+    $("#history").addClass("active");
+    $('#send').removeClass('active');
+    $("#send_tab").removeClass("active");
+    $("#history_tab").addClass("active");
+  },
+  'click #send':function(e) {
+    $("#history").removeClass("active");
+    $('#send').addClass('active');
+    $("#send_tab").addClass("active");
+    $("#history_tab").removeClass("active");
+  },
 
-  'submit #send':function(e) {
+  'submit #send_form':function(e) {
     e.preventDefault();
 
     var date = Date();
@@ -215,6 +276,8 @@ Template['mesmain'].events({
       alert("Receiver is not exist")
     } else if (sender == undefined) {
       alert("Sender is not defined")
+    } else if (sender_name == receiver_name) {
+      alert("You could not send message to yourself");
     } else {
       var received_messages = receiver["receive"];
       var send_messages = sender["send"];
@@ -266,7 +329,11 @@ Template['mesmain'].events({
             alert("Some error happened during update");
           }
         }
-      );   
+      );
+      $("#history").addClass("active");
+      $('#send').removeClass('active');
+      $("#send_tab").removeClass("active");
+      $("#history_tab").addClass("active");
     }
   },
   'submit #reply': function(e) {
@@ -307,6 +374,8 @@ Template['mesmain'].events({
       alert("Receiver is not exist")
     } else if (sender == undefined) {
       alert("Sender is not defined")
+    } else if (sender_name == receiver_name) {
+      alert("Sorry, you could not send message to yourself");
     } else {
       var sender_id = sender["_id"];
       var receiver_id = receiver["_id"];
@@ -359,7 +428,10 @@ Template['mesmain'].events({
           }
         }
       );    
+      $(".message-reply").hide();
+      $(".content").hide();
     }
+
   }
 
 });
