@@ -2,7 +2,27 @@ Meteor.subscribe('message');
 
 Template["mesget"].helpers({
   mesnum:function() {
-    return 3;
+
+    var count = 0;
+
+        var messages = Messages.findOne({"username":Meteor.user()["username"]});
+        var received_messages = messages["receive"];
+        var contactors = messages["recent"];  //contactor means all the contactors
+
+        for (var j = contactors.length -1 ; j >= 0; --j) {
+          var mesa = contactors[j];
+          for (var i in received_messages[mesa]) {
+            var message = received_messages[mesa][i]
+            if (message["read"] == false)
+              count++;
+          }
+        }
+
+
+    console.log(count);
+    if (count == 0)
+      $(".messpan").hide();
+    return count;
   }
 });
 Template["Mrsuit"].helpers({
@@ -19,18 +39,18 @@ Template['mesmain'].helpers({
       var messages = Messages.findOne({"username":Meteor.user()["username"]});
       var received_messages = messages["receive"];
       var sent_messages = messages["send"];
+      var contactors = messages["recent"];  //contactor means all the contactors
 
-      for (var mesa in received_messages) {
+      for (var j = contactors.length -1 ; j >= 0; --j) {
+        var mesa = contactors[j];
+        mes = []
 
-        //get the messages from mesa
         for (var i in received_messages[mesa]) {
           var message = received_messages[mesa][i]
           var temp = {'mesContent':message["content"], 'mesDate':message['time'], 'poster':message['sender'], owner:false};
           mes.push(temp);
         }
 
-
-        //get the messages from the current user
         for (var i in sent_messages[mesa]) {
           var message = sent_messages[mesa][i]
           var temp = {'mesContent':message["content"], 'mesDate':message['time'], 'poster':message['sender'], owner:true};
@@ -44,11 +64,22 @@ Template['mesmain'].helpers({
         mes.sort(sortDate);
         
         mesT.push({'mes':mes, 'title':mesa});
+
       }
       return mesT;
     },
     recentReceivers: function () {
-      return [{'name':'张三'},{'name':'李四'},{'name':'王二'}];
+      var messages = Messages.findOne({"username":Meteor.user()["username"]});
+      var contactors = messages["recent"];
+      var three = [];
+      var counter = 0;
+      for (var i = contactors.length-1; i >=0; --i) {
+        three.push({'name':contactors[i]});
+        counter++;
+        if (counter >= 3)
+          break;
+      }
+      return three;
     }
 });
 Template['mesmain'].events({
@@ -69,6 +100,36 @@ Template['mesmain'].events({
   'click .ellipsis.horizontal.icon': function(e) {
     var t = e.target;
     t.className='angle up icon';
+    var name = $(e.target).attr("name");
+
+    var messages = Messages.findOne({"username":Meteor.user()["username"]});
+    var received_messages = messages["receive"];
+    var user_id = messages["_id"];
+    var contactors = messages["recent"];
+
+    console.log(name);
+
+
+    for (var j = contactors.length -1 ; j >= 0; --j) {
+      var mesa = contactors[j];
+      console.log(mesa);
+      if (mesa == name) {
+        for (var i in received_messages[mesa]) {
+          received_messages[mesa][i]["read"] = true;
+        }
+        break;
+      }
+    }
+
+    Messages.update(
+        {"_id":user_id},
+        {$set:{"receive":received_messages}},function(err) {
+          if (err) {
+            alert("Some error happened during update");
+          }
+    });
+
+
     t = t.parentNode.parentNode;
     t = t.children;
     var i=0;
@@ -98,6 +159,49 @@ Template['mesmain'].events({
   },
   'click .trash.icon':function(e) {
     var t = e.target;
+
+    e.preventDefault();
+
+    var date = Date();
+    
+    var target_name = $(e.target).attr("title");
+    console.log(target_name);
+    var my_name = Meteor.user()["username"];
+    var me = Messages.findOne({"username":my_name});
+    var my_recent = me["recent"];      //the recent contactor of sender
+
+
+    if (target_name == undefined) {
+      alert("Target is not exist");
+    } else if (my_name == undefined) {
+      alert("You do not have permission to delete");
+    } else {
+      var my_id = me["_id"];
+
+      for (var i in my_recent) {
+        if (my_recent[i] == target_name) {
+          my_recent.splice(i, 1);
+          break
+        }
+      }
+
+      received_messages = me["receive"];
+      send_messages = me["send"];
+
+      received_messages[target_name] = undefined;
+      send_messages[target_name] = undefined;
+
+    //insert the message into the database
+      Messages.update(
+        {"_id":my_id},
+        {$set:{"send":send_messages, "recent":my_recent, "receive" : received_messages}},function(err) {
+          if (err) {
+            alert("Some error happened during update");
+          }
+        }
+      );    
+    }
+
     while(t.className != 'mes'){
       t = t.parentNode; 
     }
@@ -120,8 +224,20 @@ Template['mesmain'].events({
     name = name.innerText;
     receiver.value = name;
   },
+  'click #history':function(e) {
+    $("#history").addClass("active");
+    $('#send').removeClass('active');
+    $("#send_tab").removeClass("active");
+    $("#history_tab").addClass("active");
+  },
+  'click #send':function(e) {
+    $("#history").removeClass("active");
+    $('#send').addClass('active');
+    $("#send_tab").addClass("active");
+    $("#history_tab").removeClass("active");
+  },
 
-  'submit #send':function(e) {
+  'submit #send_form':function(e) {
     e.preventDefault();
 
     var date = Date();
@@ -132,6 +248,12 @@ Template['mesmain'].events({
     var sender = Messages.findOne({"username":sender_name});
     var sender_id = sender["_id"];
     var receiver_id = receiver["_id"];
+    var receiver_recent = receiver["recent"];  //the recent contactor of receiver
+    var sender_recent = sender["recent"];      //the recent contactor of sender
+    if (receiver_recent == undefined)
+      receiver_recent = [];
+    if (sender_recent == undefined)
+      sender_recent = [];
 
     //create new data
     var sent_message = {
@@ -158,6 +280,8 @@ Template['mesmain'].events({
       alert("Receiver is not exist")
     } else if (sender == undefined) {
       alert("Sender is not defined")
+    } else if (sender_name == receiver_name) {
+      alert("You could not send message to yourself");
     } else {
       var received_messages = receiver["receive"];
       var send_messages = sender["send"];
@@ -168,14 +292,32 @@ Template['mesmain'].events({
 
       if (send_messages[receiver_name] == undefined) {
         send_messages[receiver_name] = [];
-      } 
+      }
+
+
+      for (var i in receiver_recent) {
+        if (receiver_recent[i] == sender_name) {
+          receiver_recent.splice(i, 1);
+          break
+        }
+      }
+      receiver_recent.push(sender_name);
+
+      for (var i in sender_recent) {
+        if (sender_recent[i] == receiver_name) {
+          sender_recent.splice(i, 1);
+          break
+        }
+      }
+      sender_recent.push(receiver_name);
+
 
       received_messages[sender_name].push(received_message);
       send_messages[receiver_name].push(sent_message);
 
       Messages.update(
         {"_id":receiver_id},
-        {$set:{"receive":received_messages}},function(err) {
+        {$set:{"receive":received_messages, "recent":receiver_recent}},function(err) {
           if (err) {
             alert("Some error happened during update");
           }
@@ -185,12 +327,17 @@ Template['mesmain'].events({
     //insert the message into the database
       Messages.update(
         {"_id":sender_id},
-        {$set:{"send":send_messages}},function(err) {
+
+        {$set:{"send":send_messages, "recent":sender_recent}},function(err) {
           if (err) {
             alert("Some error happened during update");
           }
         }
-      );   
+      );
+      $("#history").addClass("active");
+      $('#send').removeClass('active');
+      $("#send_tab").removeClass("active");
+      $("#history_tab").addClass("active");
     }
   },
   'submit #reply': function(e) {
@@ -203,7 +350,8 @@ Template['mesmain'].events({
     var receiver = Messages.findOne({"username":receiver_name});
     var sender_name = Meteor.user()["username"];
     var sender = Messages.findOne({"username":sender_name});
-    
+    var receiver_recent = receiver["recent"];  //the recent contactor of receiver
+    var sender_recent = sender["recent"];      //the recent contactor of sender   
 
     //create new data
     var sent_message = {
@@ -230,6 +378,8 @@ Template['mesmain'].events({
       alert("Receiver is not exist")
     } else if (sender == undefined) {
       alert("Sender is not defined")
+    } else if (sender_name == receiver_name) {
+      alert("Sorry, you could not send message to yourself");
     } else {
       var sender_id = sender["_id"];
       var receiver_id = receiver["_id"];
@@ -245,12 +395,28 @@ Template['mesmain'].events({
         send_messages[receiver_name] = [];
       } 
 
+      for (var i in receiver_recent) {
+        if (receiver_recent[i] == sender_name) {
+          receiver_recent.splice(i, 1);
+          break
+        }
+      }
+      receiver_recent.push(sender_name);
+
+      for (var i in sender_recent) {
+        if (sender_recent[i] == receiver_name) {
+          sender_recent.splice(i, 1);
+          break
+        }
+      }
+      sender_recent.push(receiver_name);
+
       received_messages[sender_name].push(received_message);
       send_messages[receiver_name].push(sent_message);
 
       Messages.update(
         {"_id":receiver_id},
-        {$set:{"receive":received_messages}},function(err) {
+        {$set:{"receive":received_messages, "recent":receiver_recent}},function(err) {
           if (err) {
             alert("Some error happened during update");
           }
@@ -260,13 +426,16 @@ Template['mesmain'].events({
     //insert the message into the database
       Messages.update(
         {"_id":sender_id},
-        {$set:{"send":send_messages}},function(err) {
+        {$set:{"send":send_messages, "recent":sender_recent}},function(err) {
           if (err) {
             alert("Some error happened during update");
           }
         }
-      );   
+      );    
+      $(".message-reply").hide();
+      $(".content").hide();
     }
+
   }
 
 });

@@ -24,7 +24,7 @@ Template["main"].onRendered(function() {
         }
         var tagStr = tags.join(",");
         var fileObj = Images.insert(file);  // 此时用户可以随意插入图片数据
-        var currentDate = new Date();
+        var currentDate = new Date().toDateString();
         var imageCard = {
             "title": title,
             "image": fileObj._id,
@@ -40,6 +40,7 @@ Template["main"].onRendered(function() {
                 throw Error(err.reason);
             }
         });
+        Router.go('/my_upload');
     });
 });
 
@@ -52,11 +53,13 @@ Template["main"].helpers({
 
 Template["main"].events({
     'click #sign_out': function() {
+
         Meteor.logout(function(err) {
             if (err) {
                 alert("error occured when loggingout");
             }
-        })
+        });
+        Router.go('/');
     },
     'click #searchBT': function() {
         var search_content = $("#search").val();
@@ -76,4 +79,3 @@ Template["main"].events({
 });
 
 }
-
