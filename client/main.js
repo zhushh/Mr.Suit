@@ -53,11 +53,13 @@ Template["main"].helpers({
 
 Template["main"].events({
     'click #sign_out': function() {
+
         Meteor.logout(function(err) {
             if (err) {
                 alert("error occured when loggingout");
             }
-        })
+        });
+        Router.go('/');
     },
     'click #searchBT': function() {
         var search_content = $("#search").val();

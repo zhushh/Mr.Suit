@@ -250,6 +250,10 @@ Template['mesmain'].events({
     var receiver_id = receiver["_id"];
     var receiver_recent = receiver["recent"];  //the recent contactor of receiver
     var sender_recent = sender["recent"];      //the recent contactor of sender
+    if (receiver_recent == undefined)
+      receiver_recent = [];
+    if (sender_recent == undefined)
+      sender_recent = [];
 
     //create new data
     var sent_message = {

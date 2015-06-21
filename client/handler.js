@@ -10,8 +10,3 @@ Meteor.startup(function() {
     }
   });
 });
-
-/*Meteor.users.find().observe({
-  changed: function(post,) {var num = Meteor.user()['profile']['receive'].length;
-  console.log(num);}
-});*/

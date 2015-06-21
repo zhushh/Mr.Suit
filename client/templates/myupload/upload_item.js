@@ -78,7 +78,7 @@ Template.uploadItem.events({
 		$('.popup').popup('hide');
 	},
 	'click #remove':function(event) {
-		Images.remove({_id: this.image});
+		
 		var imageCard = {
           'image': this.image
 		};
@@ -87,6 +87,7 @@ Template.uploadItem.events({
                 throwError(err.reason);
             }
 		});
+		Images.remove({_id: this.image});
 	},
 	'click .mark-as-like': function(event) {
 		Meteor.call('imageCardIncLikers', this, Meteor.user().username, function(err) {
