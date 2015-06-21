@@ -24,7 +24,7 @@ Template["main"].onRendered(function() {
         }
         var tagStr = tags.join(",");
         var fileObj = Images.insert(file);  // 此时用户可以随意插入图片数据
-        var currentDate = new Date();
+        var currentDate = new Date().toDateString();
         var imageCard = {
             "title": title,
             "image": fileObj._id,
