@@ -1,7 +1,9 @@
 body{
 	background-image:url(images/bg.jpg);
 	background-repeat: no-repeat; 
-	background-size:1920px 1080px;
+	height: 100%;
+	width: 100%;
+	position: absolute;
 }
 .opacity{
     position:absolute;

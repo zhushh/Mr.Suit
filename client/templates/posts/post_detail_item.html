@@ -1,6 +1,6 @@
 <template name="postDetailItem">
   <div class="ui bordered rounded" id="post-detail-item">
-    <div class="ui large  rounded">
+    <div class="ui rounded">
       <div class="content">
         <div class="header">Title: {{title}}</div>
         <div class="creator">designed by 
@@ -15,7 +15,7 @@
       </div>
 
       <div class="ui image rounded bordered" id="">
-        <a id="post-detail-design-image"><img class="ui large" src="{{getImage image}}"></a>
+        <a id="post-detail-design-image"><img src="{{getImage image}}"></a>
       </div>
       <div class="extra content">
       {{#if liker}}
